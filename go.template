@@ -1,0 +1,34 @@
+package main
+
+import (
+	"bufio"
+	"fmt"
+	"os"
+)
+
+func part1() {
+	scanner := bufio.NewScanner(os.Stdin)
+
+	for scanner.Scan() {
+		line := scanner.Text()
+
+	}
+
+	fmt.Println()
+}
+
+func part2() {
+	scanner := bufio.NewScanner(os.Stdin)
+
+	for scanner.Scan() {
+		// line := scanner.Text()
+
+	}
+
+	fmt.Println()
+}
+
+func main() {
+    part1()
+    part2()
+}
