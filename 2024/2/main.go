@@ -6,6 +6,8 @@ import (
 	"os"
 	"strconv"
 	"strings"
+
+	"github.com/samber/lo"
 )
 
 func isSafeArray(nums []int) bool {
@@ -27,12 +29,10 @@ func part1(lines []string) {
 	safeCount := 0
 	for _, line := range lines {
 		numStrs := strings.Fields(line)
-		nums := make([]int, 0, len(numStrs))
-		for _, numStr := range numStrs {
+		nums := lo.Map(numStrs, func(numStr string, _ int) int {
 			num, _ := strconv.Atoi(numStr)
-			nums = append(nums, num)
-		}
-
+			return num
+		})
 		if isSafeArray(nums) {
 			safeCount += 1
 		}
@@ -47,9 +47,7 @@ func isSafeArrayPt2(nums []int) bool {
 	}
 
 	for i := 0; i < len(nums); i++ {
-		arrayWithDeletedIndex := make([]int, 0, len(nums)-1)
-		arrayWithDeletedIndex = append(arrayWithDeletedIndex, nums[:i]...)
-		arrayWithDeletedIndex = append(arrayWithDeletedIndex, nums[i+1:]...)
+		arrayWithDeletedIndex := lo.Filter(nums, func(_ int, index int) bool { return index != i })
 
 		if isSafeArray(arrayWithDeletedIndex) {
 			return true
@@ -63,11 +61,10 @@ func part2(lines []string) {
 	safeCount := 0
 	for _, line := range lines {
 		numStrs := strings.Fields(line)
-		nums := make([]int, 0, len(numStrs))
-		for _, numStr := range numStrs {
+		nums := lo.Map(numStrs, func(numStr string, _ int) int {
 			num, _ := strconv.Atoi(numStr)
-			nums = append(nums, num)
-		}
+			return num
+		})
 
 		if isSafeArrayPt2(nums) {
 			safeCount += 1
