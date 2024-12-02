@@ -49,12 +49,48 @@ func part1(lines []string) {
 	fmt.Println(sum)
 }
 
-func part2(lines []string) {
-	for _, line := range lines {
-		_ = line
+func multiplySubsetsFewestCubes(subsets []string) int {
+	cubeCounterMax := map[string]int{
+		"red":   0,
+		"green": 0,
+		"blue":  0,
 	}
 
-	fmt.Println("answer2")
+	for _, subset := range subsets {
+		cubeCounter := map[string]int{}
+
+		strs := strings.Split(subset, ", ") // "5 Red"
+		for _, s := range strs {
+			parts := strings.SplitN(s, " ", 2)
+			count, _ := strconv.Atoi(parts[0])
+			color := parts[1]
+			cubeCounter[color] = count
+		}
+		for colour, count := range cubeCounter {
+			if count > cubeCounterMax[colour] {
+				cubeCounterMax[colour] = count
+			}
+		}
+	}
+
+	prod := 1
+	for _, val := range cubeCounterMax {
+		prod *= val
+	}
+	return prod
+}
+
+func part2(lines []string) {
+	sum := 0
+	for i, line := range lines {
+		_ = line
+		removed := fmt.Sprintf("Game %d: ", i+1)
+		updatedLine := strings.Replace(line, removed, "", 1)
+		subsets := strings.Split(updatedLine, "; ")
+		sum += multiplySubsetsFewestCubes(subsets)
+	}
+
+	fmt.Println(sum)
 }
 
 func main() {
