@@ -6,29 +6,35 @@ import (
 	"os"
 )
 
-func part1() {
-	scanner := bufio.NewScanner(os.Stdin)
-
-	for scanner.Scan() {
-		line := scanner.Text()
-
+func part1(lines []string) {
+	for _, line := range lines {
+		_ = line
 	}
 
-	fmt.Println()
+	fmt.Println("answer1")
 }
 
-func part2() {
-	scanner := bufio.NewScanner(os.Stdin)
-
-	for scanner.Scan() {
-		// line := scanner.Text()
-
+func part2(lines []string) {
+	for _, line := range lines {
+		_ = line
 	}
 
-	fmt.Println()
+	fmt.Println("answer2")
 }
 
 func main() {
-    part1()
-    part2()
+	scanner := bufio.NewScanner(os.Stdin)
+
+	lines := []string{}
+	for scanner.Scan() {
+		lines = append(lines, scanner.Text())
+	}
+
+	fmt.Println()
+	fmt.Println("part 1")
+	part1(lines)
+
+	fmt.Println()
+	fmt.Println("part 2")
+	part2(lines)
 }
