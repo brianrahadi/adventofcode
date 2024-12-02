@@ -47,7 +47,8 @@ func isSafeArrayPt2(nums []int) bool {
 	}
 
 	for i := 0; i < len(nums); i++ {
-		arrayWithDeletedIndex := append([]int{}, nums[:i]...)
+		arrayWithDeletedIndex := make([]int, 0, len(nums)-1)
+		arrayWithDeletedIndex = append(arrayWithDeletedIndex, nums[:i]...)
 		arrayWithDeletedIndex = append(arrayWithDeletedIndex, nums[i+1:]...)
 
 		if isSafeArray(arrayWithDeletedIndex) {
