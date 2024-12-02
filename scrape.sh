@@ -6,6 +6,7 @@ DAY="$2"
 mkdir -p "$YEAR/$DAY"
 cd "$YEAR/$DAY" || exit
 
+touch example
 touch output
 
 if [ ! -f main.go ]; then cp ../../go.template main.go; fi
@@ -18,6 +19,9 @@ main:
 
 run: main
 	./main <input
+
+example: main
+	./main <example
 
 clean:
 	rm -f main
