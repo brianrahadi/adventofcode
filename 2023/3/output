@@ -1,0 +1,8 @@
+go build -o main main.go
+./main <input
+
+part 1
+529618
+
+part 2
+answer2

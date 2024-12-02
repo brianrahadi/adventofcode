@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+eval "$(direnv hook zsh)"
 
 YEAR="$1"
 DAY="$2"
