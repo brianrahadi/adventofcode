@@ -30,7 +30,7 @@ func part2(lines []string) {
 	sum := 0
 	shouldDo := true
 	for _, line := range lines {
-		re := regexp.MustCompile(`mul\((\d{1,3}),(\d{1,3})\)|(do\(\))|(don't\(\))`)
+		re := regexp.MustCompile(`mul\((\d{1,3}),(\d{1,3})\)|do\(\)|don't\(\)`)
 		matches := re.FindAllStringSubmatch(line, -1)
 
 		for _, match := range matches {
