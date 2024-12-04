@@ -35,10 +35,10 @@ func checkXmasCount(matrix [][]rune, r int, c int) int {
 			if i == 1 && matrix[ar][ac] != 'M' {
 				break
 			}
-			if i == 2 && matrix[ar][ac] != rune('A') {
+			if i == 2 && matrix[ar][ac] != 'A' {
 				break
 			}
-			if i == 3 && matrix[ar][ac] == rune('S') {
+			if i == 3 && matrix[ar][ac] == 'S' {
 				count += 1
 			}
 			ar += dir[0]
