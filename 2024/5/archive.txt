@@ -1,0 +1,124 @@
+// package main
+
+// import (
+// 	"bufio"
+// 	"fmt"
+// 	"os"
+// 	"strconv"
+// 	"strings"
+
+// 	"github.com/samber/lo"
+// )
+
+// func checkIsBefore(isBefore map[int][]int, num1 int, num2 int) bool {
+// 	afterish, ok := isBefore[num1]
+// 	visited := make(map[int]bool)
+
+// 	if !ok {
+// 		return false
+// 	}
+
+// 	isAfterQueue := make([]int, 0, len(afterish))
+// 	for _, num := range afterish {
+// 		if num == num2 {
+// 			return true
+// 		}
+// 		isAfterQueue = append(isAfterQueue, num)
+// 		visited[num] = true
+// 	}
+
+// 	for len(isAfterQueue) > 0 {
+// 		num := isAfterQueue[0]
+// 		isAfterQueue = isAfterQueue[1:]
+
+// 		isAfterNums, ok := isBefore[num]
+// 		if ok {
+// 			for _, isAfterNum := range isAfterNums {
+// 				if isAfterNum == num2 {
+// 					return true
+// 				}
+// 				isAfterQueue = append(isAfterQueue, isAfterNum)
+// 				if !visited[isAfterNum] {
+// 					visited[isAfterNum] = true
+// 					isAfterQueue = append(isAfterQueue, isAfterNum)
+
+// 				}
+// 			}
+// 		}
+// 	}
+// 	return false
+// }
+
+// func part1(lines []string) {
+// 	isBefore := map[int][]int{}
+// 	sum := 0
+
+// 	isFirstSection := true
+// 	for _, line := range lines {
+// 		if len(line) == 0 {
+// 			isFirstSection = false
+// 			continue
+// 		}
+// 		if isFirstSection {
+// 			intStrs := strings.Split(line, "|")
+// 			num1, err1 := strconv.Atoi(intStrs[0])
+// 			num2, err2 := strconv.Atoi(intStrs[1])
+
+// 			if err1 != nil || err2 != nil {
+// 				fmt.Println("Invalid input:", line)
+// 				continue
+// 			}
+// 			arr, ok := isBefore[num1]
+// 			if ok {
+// 				isBefore[num1] = append(arr, num2)
+// 			} else {
+// 				isBefore[num1] = []int{num2}
+// 			}
+// 		} else {
+// 			numStrs := strings.Split(line, ",")
+// 			nums := lo.Map(numStrs, func(str string, _ int) int {
+// 				num, _ := strconv.Atoi(str)
+// 				return num
+// 			})
+// 			isValid := true
+// 			for i := range len(nums) - 1 {
+// 				if !checkIsBefore(isBefore, nums[i], nums[i+1]) {
+// 					isValid = false
+// 					break
+// 				}
+// 			}
+
+// 			if isValid {
+// 				sum += nums[len(nums)/2]
+// 				fmt.Println("A", len(nums))
+// 			}
+// 		}
+// 	}
+
+// 	fmt.Println(sum)
+// }
+
+// func part2(lines []string) {
+// 	for _, line := range lines {
+// 		_ = line
+// 	}
+
+// 	fmt.Println("answer2")
+// }
+
+// func main() {
+// 	scanner := bufio.NewScanner(os.Stdin)
+
+// 	lines := []string{}
+// 	for scanner.Scan() {
+// 		lines = append(lines, scanner.Text())
+// 	}
+
+// 	fmt.Println()
+// 	fmt.Println("part 1")
+// 	part1(lines)
+
+// 	fmt.Println()
+// 	fmt.Println("part 2")
+// 	part2(lines)
+// }

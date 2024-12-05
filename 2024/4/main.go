@@ -23,22 +23,17 @@ func checkXmasCount(matrix [][]rune, r int, c int) int {
 		{-1, 1},
 	}
 
+	answer := "XMAS"
 	for _, dir := range dirs {
 		ar, ac := r, c
 		for i := range 4 {
 			if ar < 0 || ar >= len(matrix) || ac < 0 || ac >= len(matrix[ar]) {
 				break
 			}
-			if i == 0 && matrix[ar][ac] != 'X' {
+			if matrix[ar][ac] != rune(answer[i]) {
 				break
 			}
-			if i == 1 && matrix[ar][ac] != 'M' {
-				break
-			}
-			if i == 2 && matrix[ar][ac] != 'A' {
-				break
-			}
-			if i == 3 && matrix[ar][ac] == 'S' {
+			if i == 3 {
 				count += 1
 			}
 			ar += dir[0]
