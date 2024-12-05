@@ -48,8 +48,7 @@ func part1(lines []string) {
 			})
 			isValid := true
 			for i := range len(nums) - 1 {
-				_, ok := isBeforeOnePass[nums[i]][nums[i+1]]
-				if !ok {
+				if !isBeforeOnePass[nums[i]][nums[i+1]] {
 					isValid = false
 					break
 				}
@@ -101,8 +100,7 @@ func part2(lines []string) {
 			})
 			isValid := true
 			for i := range len(nums) - 1 {
-				_, ok := isBeforeOnePass[nums[i]][nums[i+1]]
-				if !ok {
+				if !isBeforeOnePass[nums[i]][nums[i+1]] {
 					isValid = false
 					break
 				}
@@ -110,8 +108,7 @@ func part2(lines []string) {
 
 			if !isValid {
 				slices.SortFunc(nums, func(num1 int, num2 int) int {
-					_, ok := isBeforeOnePass[num1][num2]
-					if ok {
+					if isBeforeOnePass[num1][num2] {
 						return 1
 					}
 					return -1
