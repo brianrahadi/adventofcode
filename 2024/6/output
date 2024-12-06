@@ -2,7 +2,7 @@ go build -o main main.go
 ./main <input
 
 part 1
-6260
+5080
 
 part 2
-5346
+1919
