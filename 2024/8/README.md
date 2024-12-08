@@ -1,0 +1,1 @@
+Takes too much time for me to understand part 2. Had to count antinodes too :))
